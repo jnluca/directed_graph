@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+.idea/
+__pycache__/
+.pytest_cache
+.mypy_cache
+*.pyc
+
+# Coverage
+.coverage
+coverage.xml
+junit/
