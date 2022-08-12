@@ -1,8 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-
 .idea/
+false/
 __pycache__/
 .pytest_cache
 .mypy_cache
