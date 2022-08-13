@@ -50,6 +50,18 @@ class TestDirectedGraph(TestCase):
         expected_number_of_vertices = 4
         self.assertEqual(expected_number_of_vertices, computed_number_of_vertices)
 
+    def test_compute_number_of_vertices_when_graph_is_empty_should_raise_exception(self):
+        # Given
+        a_directed_graph = DirectedGraph()
+
+        # When
+        with self.assertRaises(GraphNotBuiltException) as custom_error:
+            a_directed_graph.compute_number_of_vertices()
+
+        # Then
+        self.assertEqual('You have to build a graph before making computations on it!', custom_error.exception.args[0])
+
+
     def test_compute_number_of_edges(self):
         # Given
         a_given_adjacency_list = {'a': ['b', 'b', 'd', ], 'b': ['d'], 'c': ['a'], 'd': ['c']}
@@ -62,6 +74,17 @@ class TestDirectedGraph(TestCase):
         # Then
         expected_number_of_edges = 6
         self.assertEqual(expected_number_of_edges, computed_number_of_edges)
+
+    def test_compute_number_of_edges_when_graph_is_empty_should_raise_exception(self):
+        # Given
+        a_directed_graph = DirectedGraph()
+
+        # When
+        with self.assertRaises(GraphNotBuiltException) as custom_error:
+            a_directed_graph.compute_number_of_edges()
+
+        # Then
+        self.assertEqual('You have to build a graph before making computations on it!', custom_error.exception.args[0])
 
     def test_compute_out_degrees_per_vertex(self):
         # Given
@@ -76,6 +99,17 @@ class TestDirectedGraph(TestCase):
         expected_out_degrees: Dict[str, int] = {'a': 3, 'b': 1, 'c': 1, 'd': 1, 'e': 0}
         self.assertEqual(expected_out_degrees, computed_number_of_edges)
 
+    def test_compute_out_degrees_when_graph_is_empty_should_raise_exception(self):
+        # Given
+        a_directed_graph = DirectedGraph()
+
+        # When
+        with self.assertRaises(GraphNotBuiltException) as custom_error:
+            a_directed_graph.compute_out_degrees_per_vertex()
+
+        # Then
+        self.assertEqual('You have to build a graph before making computations on it!', custom_error.exception.args[0])
+
     def test_compute_in_degrees_per_vertex(self):
         # Given
         a_given_adjacency_list = {'a': ['b', 'b', 'd', ], 'b': ['d'], 'c': ['a'], 'd': ['c'], 'e': []}
@@ -88,6 +122,18 @@ class TestDirectedGraph(TestCase):
         # Then
         expected_out_degrees: Dict[str, int] = {'a': 1, 'b': 2, 'c': 1, 'd': 2, 'e': 0}
         self.assertEqual(expected_out_degrees, computed_number_of_edges)
+
+    def test_compute_in_degrees_when_graph_is_empty_should_raise_exception(self):
+        # Given
+        a_directed_graph = DirectedGraph()
+
+        # When
+        with self.assertRaises(GraphNotBuiltException) as custom_error:
+            a_directed_graph.compute_in_degrees_per_vertex()
+
+        # Then
+        self.assertEqual('You have to build a graph before making computations on it!', custom_error.exception.args[0])
+
 
     @patch('builtins.open')
     def test_deserialize_graph_should_raise_exception_when_file_not_found(self, mocked_open):

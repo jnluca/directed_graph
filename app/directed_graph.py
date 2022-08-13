@@ -30,15 +30,21 @@ class DirectedGraph:
             raise SerializedGraphFilePathNotFound(f'{pickle_filepath} not found !')
 
     def compute_number_of_vertices(self) -> int:
+        if self.adjacency_list is None:
+            raise GraphNotBuiltException('You have to build a graph before making computations on it!')
         return len(self.adjacency_list)
 
     def compute_number_of_edges(self) -> int:
+        if self.adjacency_list is None:
+            raise GraphNotBuiltException('You have to build a graph before making computations on it!')
         number_of_edges: int = 0
         for k in self.adjacency_list:
             number_of_edges += len(self.adjacency_list[k])
         return number_of_edges
 
     def compute_in_degrees_per_vertex(self) -> Dict[str, int]:
+        if self.adjacency_list is None:
+            raise GraphNotBuiltException('You have to build a graph before making computations on it!')
         list_of_sink_lists: List[List[str]] = list(self.adjacency_list.values())
         flat_list_of_sinks: List[str] = [item for sublist in list_of_sink_lists for item in sublist]
         in_degrees_counter: Dict[str, int] = dict(Counter(flat_list_of_sinks))
@@ -47,6 +53,8 @@ class DirectedGraph:
         return in_degrees
 
     def compute_out_degrees_per_vertex(self) -> Dict[str, int]:
+        if self.adjacency_list is None:
+            raise GraphNotBuiltException('You have to build a graph before making computations on it!')
         return {k: len(self.adjacency_list[k]) for k in self.adjacency_list}
 
     def serialize_graph(self, dir_path: str) -> None:
