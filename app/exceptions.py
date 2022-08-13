@@ -1,5 +1,6 @@
 class SerializedGraphFilePathNotFound(Exception):
     pass
 
-class GraphNotBuiltExeption(Exception):
+
+class GraphNotBuiltException(Exception):
     pass

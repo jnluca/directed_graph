@@ -62,6 +62,18 @@ It is launched as follows :
 $ python -m app.application.entry_point_create_directed_graph_from_file  --filepath app/tmp/graph.pickle
 ```
 
+#### Work on directed graph from file streaming
+
+he entrypoint `entry_point_work_on_directed_graph_from_file_streaming` allows to compute the same statistics on the graph
+as the other entry points, but without necessarily loading the full serialized file in memory in case
+it is too big.
+
+It is launched as follows :
+
+```bash
+$ python -m app.application.work_on_graph_from_pickle_file_streaming  --filepath app/tmp/graph.pickle
+```
+
 ### Tests
 
 This package contain the unit tests of the project.

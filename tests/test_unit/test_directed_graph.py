@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from app.directed_graph import DirectedGraph
-from app.exceptions import SerializedGraphFilePathNotFound, GraphNotBuiltExeption
+from app.exceptions import SerializedGraphFilePathNotFound, GraphNotBuiltException
 
 
 class TestDirectedGraph(TestCase):
@@ -86,7 +86,7 @@ class TestDirectedGraph(TestCase):
         computed_number_of_edges = a_directed_graph.compute_in_degrees_per_vertex()
 
         # Then
-        expected_out_degrees: Dict[str, int] = {'a': 1, 'b': 2, 'c': 1, 'd': 2}
+        expected_out_degrees: Dict[str, int] = {'a': 1, 'b': 2, 'c': 1, 'd': 2, 'e': 0}
         self.assertEqual(expected_out_degrees, computed_number_of_edges)
 
     @patch('builtins.open')
@@ -156,7 +156,7 @@ class TestDirectedGraph(TestCase):
 
         # When
         a_directed_graph = DirectedGraph()
-        with self.assertRaises(GraphNotBuiltExeption) as custom_error:
+        with self.assertRaises(GraphNotBuiltException) as custom_error:
             a_directed_graph.serialize_graph(provided_dir)
 
         # Then
